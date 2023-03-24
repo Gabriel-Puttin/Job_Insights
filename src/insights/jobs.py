@@ -16,6 +16,7 @@ def read(path: str) -> List[Dict]:
     list
         List of rows as dicts
     """
+    # First commitS
     raise NotImplementedError
 
 
