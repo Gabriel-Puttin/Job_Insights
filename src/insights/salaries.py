@@ -1,40 +1,25 @@
 from typing import Union, List, Dict
+from src.insights.jobs import read
 
 
 def get_max_salary(path: str) -> int:
-    """Get the maximum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+    my_jobs = read(path)
+    result = 0
+    for job in my_jobs:
+        salary: str = job['max_salary']
+        if salary.isdigit() and int(salary) > int(result):
+            result = salary
+    return int(result)
 
 
 def get_min_salary(path: str) -> int:
-    """Get the minimum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+    my_jobs = read(path)
+    result = 50000
+    for job in my_jobs:
+        salary: str = job['min_salary']
+        if salary.isdigit() and int(salary) < int(result):
+            result = salary
+    return int(result)
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
